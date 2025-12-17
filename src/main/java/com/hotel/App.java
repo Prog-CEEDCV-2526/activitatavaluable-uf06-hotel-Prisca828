@@ -53,6 +53,17 @@ public class App {
      */
     public static void main(String[] args) {
         inicialitzarPreus();
+        HashMap <String, Float> preuHabitacions= new HashMap<String, Float>();
+        preuHabitacions.put ("Estandard", 50f);
+        preuHabitacions.put ("Suite", 100f);
+        preuHabitacions.put ("Deluxe", 150f);
+        HashMap<String, Integer> capacitatInicial = new HashMap<String, Integer>();
+        capacitatInicial.put ("Estandard", 30); 
+        capacitatInicial.put ("Suite", 20);
+        capacitatInicial.put ("Deluxe", 10);
+
+
+
 
         int opcio = 0;
         do {
