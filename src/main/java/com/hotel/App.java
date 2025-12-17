@@ -122,6 +122,17 @@ public class App {
        preusServeis.put ("Gimnas", 15f);
        preusServeis.put ("Spa", 20f);
        preusServeis.put ("Piscina", 25f);  
+         switch (opcio) {
+                case 1:
+                 System.out.println("Has seleccionat l'opció de reservar una habitació Estandard.");
+                 break;
+                case 2:
+                 System.out.println("Has seleccionat l'opció d'alliberar una habitació Suite.");
+                 break;
+                case 3:
+                 System.out.println("Has seleccionat l'opció de consultar disponibilitat Deluxe.");
+                 break;
+         }
     }
 
     /**
@@ -130,7 +141,8 @@ public class App {
      */
     public static void reservarHabitacio() {
         System.out.println("\n===== RESERVAR HABITACIÓ =====");
-        //TODO:
+        String tipusHabitacio = seleccionarTipusHabitacioDisponible();
+        ArrayList<String> serveisSeleccionats = new ArrayList<String>();
         HashMap<String,Integer> capacitatInicial = new HashMap<String,Integer>();
         capacitatInicial.put(TIPUS_ESTANDARD, 30);
         capacitatInicial.put(TIPUS_SUITE, 20); 
