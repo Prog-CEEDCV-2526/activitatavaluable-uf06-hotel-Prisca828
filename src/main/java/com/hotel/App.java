@@ -132,8 +132,18 @@ public class App {
     public static void reservarHabitacio() {
         System.out.println("\n===== RESERVAR HABITACIÓ =====");
         //TODO:
+        HashMap<String,Integer> capacitatInicial = new HashMap<String,Integer>();
+        capacitatInicial.put(TIPUS_ESTANDARD, 30);
+        capacitatInicial.put(TIPUS_SUITE, 20); 
+        capacitatInicial.put(TIPUS_DELUXE, 10);
 
-   
+
+        
+
+
+
+
+
 
         
     }
