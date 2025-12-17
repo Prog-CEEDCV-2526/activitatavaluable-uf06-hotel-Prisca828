@@ -110,8 +110,7 @@ public class App {
      * Processa l'opció seleccionada per l'usuari i crida el mètode corresponent.
      */
     public static void gestionarOpcio(int opcio) {
-       //TODO:
-         System.out.println("===== INICIALITZANT PREUS =====");
+       System.out.println("===== INICIALITZANT PREUS =====");
        // Tipus d'habitació
        HashMap<String, Float> preusHabitacions = new HashMap<String, Float>();
        preusHabitacions.put ("Estandard", 50f);
