@@ -117,6 +117,12 @@ public class App {
        preusHabitacions.put ("Estandard", 50f);
        preusHabitacions.put ("Suite", 100f);
        preusHabitacions.put ("Deluxe", 150f);
+       // Serveis addicionals
+       HashMap<String, Float> preusServeis = new HashMap<String, Float>();
+       preusServeis.put ("Esmorzar", 10f);
+       preusServeis.put ("Gimnas", 15f);
+       preusServeis.put ("Spa", 20f);
+       preusServeis.put ("Piscina", 25f);  
     }
 
     /**
