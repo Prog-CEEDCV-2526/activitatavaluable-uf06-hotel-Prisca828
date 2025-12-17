@@ -112,28 +112,24 @@ public class App {
     public static void gestionarOpcio(int opcio) {
        System.out.println("===== INICIALITZANT PREUS =====");
        // Tipus d'habitació
-       HashMap<String, Float> preusHabitacions = new HashMap<String, Float>();
-       float Estandard = 50f;
-       float Suite = 100f;
-       float Deluxe = 150f;
-       // Serveis addicionals
-       HashMap<String, Float> preusServeis = new HashMap<String, Float>();
-       preusServeis.put ("Esmorzar", 10f);
-       preusServeis.put ("Gimnas", 15f);
-       preusServeis.put ("Spa", 20f);
-       preusServeis.put ("Piscina", 25f);  
-         switch (opcio) {
+        HashMap<String, Float> preusHabitacions = new HashMap<String, Float>();
+        preusHabitacions.put(TIPUS_ESTANDARD, 50f);
+        preusHabitacions.put(TIPUS_SUITE, 100f);
+        preusHabitacions.put(TIPUS_DELUXE, 150f);
+            switch (opcio) {
                 case 1:
-                 System.out.println("Has seleccionat l'opció de reservar una habitació Estandard.");
-                 break;
+                 System.out.println("Has seleccionat l'opció de reservar una habitació Estàndard,vale 50f.");
+                break;
                 case 2:
-                 System.out.println("Has seleccionat l'opció d'alliberar una habitació Suite.");
+                 System.out.println("Has seleccionat l'opció d'alliberar una habitació Suite, vale 100f.");
                  break;
                 case 3:
-                 System.out.println("Has seleccionat l'opció de consultar disponibilitat Deluxe.");
-                 break;
+                System.out.println("Has seleccionat l'opció de consultar disponibilitat Deluxe, vale 150f.");
+                break;
          }
     }
+       // Serveis addicionals
+       
 
     /**
      * Gestiona tot el procés de reserva: selecció del tipus d'habitació,
