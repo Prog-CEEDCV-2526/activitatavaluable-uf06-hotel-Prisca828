@@ -103,7 +103,7 @@ public class App {
         System.out.println("3. Consultar disponibilitat");
         System.out.println("4. Llistar reserves per tipus");
         System.out.println("5. Obtindre una reserva");
-        System.out.println("6. Ixir");
+        System.out.println("6. Eixir");
     }
 
     /**
@@ -113,9 +113,9 @@ public class App {
        System.out.println("===== INICIALITZANT PREUS =====");
        // Tipus d'habitació
        HashMap<String, Float> preusHabitacions = new HashMap<String, Float>();
-       preusHabitacions.put ("Estandard", 50f);
-       preusHabitacions.put ("Suite", 100f);
-       preusHabitacions.put ("Deluxe", 150f);
+       float Estandard = 50f;
+       float Suite = 100f;
+       float Deluxe = 150f;
        // Serveis addicionals
        HashMap<String, Float> preusServeis = new HashMap<String, Float>();
        preusServeis.put ("Esmorzar", 10f);
