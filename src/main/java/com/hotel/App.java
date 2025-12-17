@@ -127,8 +127,28 @@ public class App {
                 System.out.println("Has seleccionat l'opció de consultar disponibilitat Deluxe, vale 150f.");
                 break;
          }
+        // Serveis addicionals
+         HashMap<String, Float> preusServeis = new HashMap<String, Float>();
+            preusServeis.put(SERVEI_ESMORZAR, 10f);
+            preusServeis.put(SERVEI_GIMNAS, 15f);
+            preusServeis.put(SERVEI_SPA, 20f);      
+            preusServeis.put(SERVEI_PISCINA, 25f);
+            switch (opcio) {
+                case 1:
+                 System.out.println("Has seleccionat servei d'esmorzar, vale 10f.");
+                break;
+                case 2:
+                 System.out.println("Has seleccionat l'opció d'alliberar una habitació amb servei de gimnàs, vale 15f.");
+                 break;
+                case 3:
+                System.out.println("Has seleccionat l'opció de consultar disponibilitat amb servei de spa, vale 20f.");
+                break;
+                case 4:
+                System.out.println("Has seleccionat l'opció de llistar reserves per tipus amb servei de piscina, vale 25f.");
+            }
+
     }
-       // Serveis addicionals
+       
        
 
     /**
