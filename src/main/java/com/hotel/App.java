@@ -137,13 +137,15 @@ public class App {
         capacitatInicial.put(TIPUS_SUITE, 20); 
         capacitatInicial.put(TIPUS_DELUXE, 10);
 
-
-        
-
-
-
-
-
+    System.out.println("Capacitat inicial de les habitacions:");
+    for (String tipus : capacitatInicial.keySet()) {
+        int capacitat = capacitatInicial.get(tipus);
+        System.out.println("- " + tipus + ": " + capacitat + " habitacions");  
+        serveisSeleccionats = seleccionarServeis();
+        float preuTotal = calcularPreuTotal(tipusHabitacio, serveisSeleccionats);
+        int codiReserva = generarCodiReserva();
+        System.out.println("\nReserva realitzada amb èxit!");   
+    }
 
         
     }
