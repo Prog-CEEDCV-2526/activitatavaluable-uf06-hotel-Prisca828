@@ -145,6 +145,7 @@ public class App {
                 break;
                 case 4:
                 System.out.println("Has seleccionat l'opció de llistar reserves per tipus amb servei de piscina, vale 25f.");
+                break;
             }
 
     }
