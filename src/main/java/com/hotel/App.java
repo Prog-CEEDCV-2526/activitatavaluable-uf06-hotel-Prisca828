@@ -142,22 +142,24 @@ public class App {
     public static void reservarHabitacio() {
         System.out.println("\n===== RESERVAR HABITACIÓ =====");
         String tipusHabitacio = seleccionarTipusHabitacioDisponible();
-        ArrayList<String> serveisSeleccionats = new ArrayList<String>();
         HashMap<String,Integer> capacitatInicial = new HashMap<String,Integer>();
         capacitatInicial.put(TIPUS_ESTANDARD, 30);
         capacitatInicial.put(TIPUS_SUITE, 20); 
         capacitatInicial.put(TIPUS_DELUXE, 10);
-
     System.out.println("Capacitat inicial de les habitacions:");
-    for (String tipus : capacitatInicial.keySet()) {
+        for (String tipus : capacitatInicial.keySet()) {
         int capacitat = capacitatInicial.get(tipus);
         System.out.println("- " + tipus + ": " + capacitat + " habitacions");  
-        serveisSeleccionats = seleccionarServeis();
+        ArrayList<String> serveisSeleccionats = seleccionarServeis();
         float preuTotal = calcularPreuTotal(tipusHabitacio, serveisSeleccionats);
         int codiReserva = generarCodiReserva();
         System.out.println("\nReserva realitzada amb èxit!");   
     }
-
+       ArrayList<String> serveisSeleccionats = seleccionarServeis();
+        System.out.println("Tipus d'habitació: " + tipusHabitacio);
+        System.out.println("Serveis addicionals: " + serveisSeleccionats);
+        System.out.println("Preu total (incloent IVA): " + preuTotal + "€");
+        System.out.println("Codi de reserva: " + codiReserva);
         
     }
 
