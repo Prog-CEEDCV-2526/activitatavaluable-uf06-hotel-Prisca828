@@ -52,25 +52,7 @@ public class App {
      * fins que l'usuari decideix eixir.
      */
     public static void main(String[] args) {
-        Scanner entrada = new Scanner (System.in);
-        System.out.print ("Elegim una habitacio");
-        //static void inicialitzarPreus(); 
-        HashMap <String, Float> preuHabitacions= new HashMap<String, Float>();
-        preuHabitacions.put ("Estandard", 50f);
-        preuHabitacions.put ("Suite", 100f);
-        preuHabitacions.put ("Deluxe", 150f);
-        HashMap<String, Integer> capacitatInicial = new HashMap<String, Integer>();
-        capacitatInicial.put ("Estandard", 30); 
-        capacitatInicial.put ("Suite", 20);
-        capacitatInicial.put ("Deluxe", 10);
-        System.out.print ("Elegim un serveis");
-        HashMap<String, Float> preusServeis = new HashMap<String, Float>();
-        preusServeis.put ("Esmorzar",10f);
-        preusServeis.put ("Gimnas",15f);
-        preusServeis.put ("Spa",20f);
-        preusServeis.put ("Piscina",25f);
-        
-
+        inicialitzarPreus();
 
         int opcio = 0;
         do {
@@ -129,6 +111,12 @@ public class App {
      */
     public static void gestionarOpcio(int opcio) {
        //TODO:
+         System.out.println("===== INICIALITZANT PREUS =====");
+       // Tipus d'habitació
+       HashMap<String, Float> preusHabitacions = new HashMap<String, Float>();
+       preusHabitacions.put ("Estandard", 50f);
+       preusHabitacions.put ("Suite", 100f);
+       preusHabitacions.put ("Deluxe", 150f);
     }
 
     /**
@@ -138,6 +126,9 @@ public class App {
     public static void reservarHabitacio() {
         System.out.println("\n===== RESERVAR HABITACIÓ =====");
         //TODO:
+
+   
+
         
     }
 
