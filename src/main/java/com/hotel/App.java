@@ -52,9 +52,9 @@ public class App {
      * fins que l'usuari decideix eixir.
      */
     public static void main(String[] args) {
-        Scanner entrada = new Scanner (System. in);
+        Scanner entrada = new Scanner (System.in);
         System.out.print ("Elegim una habitacio");
-        inicialitzarPreus();
+        //static void inicialitzarPreus(); 
         HashMap <String, Float> preuHabitacions= new HashMap<String, Float>();
         preuHabitacions.put ("Estandard", 50f);
         preuHabitacions.put ("Suite", 100f);
@@ -69,6 +69,7 @@ public class App {
         preusServeis.put ("Gimnas",15f);
         preusServeis.put ("Spa",20f);
         preusServeis.put ("Piscina",25f);
+        
 
 
         int opcio = 0;
