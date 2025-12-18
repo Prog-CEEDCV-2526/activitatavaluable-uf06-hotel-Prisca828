@@ -111,7 +111,8 @@ public class App {
      */
     public static void gestionarOpcio(int opcio) {
        System.out.println("===== INICIALITZANT PREUS =====");
-       // Tipus d'habitació
+       HashMap<String, Float> preusHabitacions = new HashMap<>();
+         // Tipus d'habitació
             switch (opcio) {
                 case 1:
                  System.out.println("Has seleccionat l'opció de reservar una habitació Estàndard");
@@ -131,25 +132,22 @@ public class App {
          }
         // Serveis addicionals
          HashMap<String, Float> preusServeis = new HashMap<String, Float>();
-            preusServeis.put(SERVEI_ESMORZAR, 10f);
-            preusServeis.put(SERVEI_GIMNAS, 15f);
-            preusServeis.put(SERVEI_SPA, 20f);      
-            preusServeis.put(SERVEI_PISCINA, 25f);
-            switch (opcio) {
-                case 1:
+           switch (opcio) {
+                case 4:
                  System.out.println("Has seleccionat servei d'esmorzar, vale 10f.");
                 break;
-                case 2:
+                case 5:
                  System.out.println("Has seleccionat l'opció d'alliberar una habitació amb servei de gimnàs, vale 15f.");
                  break;
-                case 3:
+                case 6:
                 System.out.println("Has seleccionat l'opció de consultar disponibilitat amb servei de spa, vale 20f.");
                 break;
-                case 4:
+                case 7:
                 System.out.println("Has seleccionat l'opció de llistar reserves per tipus amb servei de piscina, vale 25f.");
                 break;
-            }
-
+                default:
+                System.out.println("Opció no vàlida.");
+      }
     }
        
         /**
@@ -158,6 +156,7 @@ public class App {
      */
     public static void reservarHabitacio() {
         System.out.println("\n===== RESERVAR HABITACIÓ =====");
+        System.out.println("Tipus d'habitació disponibles:");
         String tipusHabitacio = seleccionarTipusHabitacioDisponible();
         HashMap<String,Integer> capacitatInicial = new HashMap<String,Integer>();
         capacitatInicial.put(TIPUS_ESTANDARD, 30);
@@ -171,13 +170,7 @@ public class App {
         float preuTotal = calcularPreuTotal(tipusHabitacio, serveisSeleccionats);
         int codiReserva = generarCodiReserva();
         System.out.println("\nReserva realitzada amb èxit!");   
-    }
-       ArrayList<String> serveisSeleccionats = seleccionarServeis();
-        System.out.println("Tipus d'habitació: " + tipusHabitacio);
-        System.out.println("Serveis addicionals: " + serveisSeleccionats);
-        System.out.println("Preu total (incloent IVA): " + preuTotal + "€");
-        System.out.println("Codi de reserva: " + codiReserva);
-        
+    }    
     }
 
     /**
@@ -186,6 +179,7 @@ public class App {
      */
     public static String seleccionarTipusHabitacio() {
         //TODO:
+        
         return null;
         
     }
