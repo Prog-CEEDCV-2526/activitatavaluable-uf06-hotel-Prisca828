@@ -150,9 +150,7 @@ public class App {
 
     }
        
-       
-
-    /**
+        /**
      * Gestiona tot el procés de reserva: selecció del tipus d'habitació,
      * serveis addicionals, càlcul del preu total i generació del codi de reserva.
      */
@@ -187,6 +185,7 @@ public class App {
     public static String seleccionarTipusHabitacio() {
         //TODO:
         return null;
+        
     }
 
     /**
