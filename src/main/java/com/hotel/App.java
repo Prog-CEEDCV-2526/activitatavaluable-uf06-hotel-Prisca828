@@ -112,43 +112,18 @@ public class App {
     public static void gestionarOpcio(int opcio) {
        System.out.println("===== INICIALITZANT PREUS =====");
        HashMap<String, Float> preusHabitacions = new HashMap<>();
-         // Tipus d'habitació
-            switch (opcio) {
-                case 1:
-                 System.out.println("Has seleccionat l'opció de reservar una habitació Estàndard");
-                 int preuStandard = 50;
-                 System.out.println("Vale " + preuStandard + "f.");
-                break;
-                case 2:
-                 System.out.println("Has seleccionat l'opció d'alliberar una habitació Suite, ");
-                int preuSuite = 100;
-                System.out.println("Vale " + preuSuite + "f.");
-                break;
-                case 3:
-                System.out.println("Has seleccionat l'opció de consultar disponibilitat Deluxe,");
-                int preuDeluxe = 150;
-                System.out.println("Vale " + preuDeluxe + "f.");
-                break;
-         }
-        // Serveis addicionals
-         HashMap<String, Float> preusServeis = new HashMap<String, Float>();
-           switch (opcio) {
-                case 4:
-                 System.out.println("Has seleccionat servei d'esmorzar, vale 10f.");
-                break;
-                case 5:
-                 System.out.println("Has seleccionat l'opció d'alliberar una habitació amb servei de gimnàs, vale 15f.");
-                 break;
-                case 6:
-                System.out.println("Has seleccionat l'opció de consultar disponibilitat amb servei de spa, vale 20f.");
-                break;
-                case 7:
-                System.out.println("Has seleccionat l'opció de llistar reserves per tipus amb servei de piscina, vale 25f.");
-                break;
-                default:
-                System.out.println("Opció no vàlida.");
-      }
-    }
+         preusHabitacions.put(TIPUS_ESTANDARD, 50f);
+         preusHabitacions.put(TIPUS_SUITE, 100f);
+         preusHabitacions.put(TIPUS_DELUXE, 150f);
+       HashMap<String, Integer> capacitatInicial = new HashMap<>();
+       capacitatInicial.put(TIPUS_ESTANDARD, 30);
+       capacitatInicial.put(TIPUS_SUITE, 20);
+       capacitatInicial.put(TIPUS_DELUXE, 10);
+       HashMap<String, Float> preusServeis = new HashMap<String, Float>();
+        preusServeis.put(SERVEI_ESMORZAR, 10f);
+        preusServeis.put(SERVEI_GIMNAS, 15f);
+         preusServeis.put(SERVEI_SPA, 20f);
+         preusServeis.put(SERVEI_PISCINA, 25f);
        
         /**
      * Gestiona tot el procés de reserva: selecció del tipus d'habitació,
