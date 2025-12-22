@@ -179,8 +179,23 @@ public class App {
      */
     public static String seleccionarTipusHabitacio() {
         //TODO:
+        System.out.println("Seleccione el tipo de habitación:");
+        System.out.println("1. Estándar");  
+        System.out.println("2. Suite");
+        System.out.println("3. Deluxe");
+        int opcion = sc.nextInt();
+        switch (opcion) {
+            case 1:
+                return TIPUS_ESTANDARD;
+            case 2:
+                return TIPUS_SUITE;
+            case 3:
+                return TIPUS_DELUXE;
+            default:
+                System.out.println("Opción no válida.");
+                return null;
+        }
         
-        return null;
         
     }
 
