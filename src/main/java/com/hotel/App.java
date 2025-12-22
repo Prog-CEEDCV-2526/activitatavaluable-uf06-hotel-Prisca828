@@ -124,7 +124,33 @@ public class App {
         preusServeis.put(SERVEI_GIMNAS, 15f);
          preusServeis.put(SERVEI_SPA, 20f);
          preusServeis.put(SERVEI_PISCINA, 25f);
-       
+        switch (opcio) {
+            case 1:
+                System.out.println("Has seleccionat reservar una habitació Estandard. Vale 50f");
+                break;
+            case 2:
+                System.out.println("Has seleccionat reservar una habitació Suite. Vale 100f");
+                break;
+            case 3:
+                System.out.println("Has seleccionat reservar una habitació Deluxe. Vale 150f");
+                break;
+    //Serveis addicionals
+            case 4:
+                System.out.println("Has seleccionat servei d'esmorzar. Vale 10f");
+                break;
+            case 5:
+                System.out.println("Has seleccionat servei de gimnàs. Vale 15f");
+                break;
+            case 6:
+                System.out.println("Has seleccionat servei de spa. Vale 20f");
+                break;
+            case 7:
+                System.out.println("Has seleccionat servei de piscina. Vale 25f");      
+                break;
+            default:
+         System.out.println("Opció no vàlida. Si us plau, torneu a intentar-ho.");
+        }
+    }
         /**
      * Gestiona tot el procés de reserva: selecció del tipus d'habitació,
      * serveis addicionals, càlcul del preu total i generació del codi de reserva.
