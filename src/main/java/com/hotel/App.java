@@ -207,7 +207,11 @@ public class App {
      */
     public static String seleccionarTipusHabitacioDisponible() {
         System.out.println("\nTipus d'habitació disponibles:");
-        //TODO:
+        for (String tipus : preusHabitacions.keySet()) {
+            mostrarInfoTipus(tipus);
+        }   
+    
+
         return null;
     }
 
@@ -216,10 +220,34 @@ public class App {
      * els retorna en un ArrayList de String.
      */
     public static ArrayList<String> seleccionarServeis() {
+        ArrayList<String> serveisSeleccionats = new ArrayList<>();
         //TODO:
+        System.out.println("Serveis addicionals disponibles:");
+        System.out.println("1. Esmorzar (10€)");
+        System.out.println("2. Gimnàs (15€)");
+        System.out.println("3. Spa (20€)");
+        System.out.println("4. Piscina (25€)");
+        System.out.println("0. Cap servei");
+        int opcio = sc.nextInt();
+        switch (opcio) {
+            case 1:
+                serveisSeleccionats.add("Esmostar");
+                break;
+            case 2:
+                serveisSeleccionats.add("Gimnàs");
+                break;
+            case 3:
+                serveisSeleccionats.add("Spa");
+                break;
+            case 4:
+                serveisSeleccionats.add("Piscina");
+                break;
+            default:
+                break;
+        }
 
-        return null;
-    }
+        return serveisSeleccionats;
+        }
 
     /**
      * Calcula i retorna el cost total de la reserva, incloent l'habitació,
