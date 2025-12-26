@@ -153,8 +153,8 @@ public class App {
        preusServeis.put(SERVEI_GIMNAS, 15f);
        preusServeis.put(SERVEI_SPA, 20f);
        preusServeis.put(SERVEI_PISCINA, 25f);
+    }
 
-   }
         /**
      * Gestiona tot el procés de reserva: selecció del tipus d'habitació,
      * serveis addicionals, càlcul del preu total i generació del codi de reserva.
@@ -210,7 +210,6 @@ public class App {
      * habitacions disponibles. En cas contrari, retorna null.
      */
     public static String seleccionarTipusHabitacioDisponible() {
-        //TODO:
         System.out.println("\nTipus d'habitació disponibles:");
         for (String tipus : preusHabitacions.keySet()) {
             mostrarInfoTipus(tipus);
@@ -218,8 +217,6 @@ public class App {
                 return tipus;
             }
         }   
-    
-
         return null;
     }
 
@@ -322,6 +319,12 @@ public class App {
      */
     public static void consultarDisponibilitat() {
         // TODO: Mostrar lliures i ocupades
+        System.out.println("\n===== DISPONIBILITAT HABITACIONS =====");
+        System.out.println("Tipus\tLliures\tOcupades"); 
+        for (String tipus : preusHabitacions.keySet()) {
+            mostrarDisponibilitatTipus(tipus);
+        }
+
     }
 
     /**
@@ -330,6 +333,18 @@ public class App {
      */
     public static void llistarReservesPerTipus(int[] codis, String tipus) {
          // TODO: Implementar recursivitat
+         if (codis.length == 0) {
+             System.out.println("No hi ha reserves per a aquest tipus d'habitació.");
+             return;
+         }
+         int codi = codis[0];
+         if (reserves.containsKey(codi)) {
+             Reserva reserva = reserves.get(codi);
+             if (reserva.getTipusHabitacio().equals(tipus)) {
+                 mostrarDadesReserva(codi);
+             }
+         }
+         llistarReservesPerTipus(java.util.Arrays.copyOfRange(codis, 1, codis.length), tipus);
     }
 
     /**
@@ -338,6 +353,13 @@ public class App {
     public static void obtindreReserva() {
         System.out.println("\n===== CONSULTAR RESERVA =====");
         // TODO: Mostrar dades d'una reserva concreta
+        System.out.print("Introdueix el codi de reserva: ");
+        int codi = sc.nextInt();    
+        if (reserves.containsKey(codi)) {
+            mostrarDadesReserva(codi);
+        } else {
+            System.out.println("No s'ha trobat cap reserva amb aquest codi.");
+        }
  
     }
 
@@ -348,6 +370,9 @@ public class App {
     public static void obtindreReservaPerTipus() {
         System.out.println("\n===== CONSULTAR RESERVES PER TIPUS =====");
         // TODO: Llistar reserves per tipus
+        String tipus = seleccionarTipusHabitacio();
+        int[] codis = reserves.keySet().stream().mapToInt(Integer::intValue).toArray();
+        llistarReservesPerTipus(codis, tipus);  
     }
 
     /**
@@ -355,6 +380,11 @@ public class App {
      */
     public static void mostrarDadesReserva(int codi) {
        // TODO: Imprimir tota la informació d'una reserva
+         Reserva reserva = reserves.get(codi);
+            System.out.println("Codi de reserva: " + codi);
+            System.out.println("Tipus d'habitació: " + reserva.getTipusHabitacio());
+            System.out.println("Serveis addicionals: " + String.join(", ", reserva.getServeisAddicionals()));
+            System.out.println("Preu total: " + reserva.getPreuTotal() + "€");  
     }
 
     // --------- MÈTODES AUXILIARS (PER MILLORAR LEGIBILITAT) ---------
