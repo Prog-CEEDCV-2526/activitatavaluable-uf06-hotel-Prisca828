@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 
+import jdk.dynalink.beans.StaticClass;
+
 /**
  * Gestió de reserves d'un hotel.
  */
@@ -110,46 +112,48 @@ public class App {
      * Processa l'opció seleccionada per l'usuari i crida el mètode corresponent.
      */
     public static void gestionarOpcio(int opcio) {
+        
        System.out.println("===== INICIALITZANT PREUS =====");
-       HashMap<String, Float> preusHabitacions = new HashMap<>();
-         preusHabitacions.put(TIPUS_ESTANDARD, 50f);
-         preusHabitacions.put(TIPUS_SUITE, 100f);
-         preusHabitacions.put(TIPUS_DELUXE, 150f);
-       HashMap<String, Integer> capacitatInicial = new HashMap<>();
+
+      inicialitzarPreus();
+              
+            switch (opcio) {
+            case 1:
+                reservarHabitacio();
+            case 2:
+                alliberarHabitacio();
+                break;
+            case 3:
+               consultarDisponibilitat();
+                break;
+            case 4:
+                obtindreReservaPerTipus();
+            case 5:
+                obtindreReserva()
+                break;
+            case 6:
+                System.out.println("Adeu!");
+                break;
+            default:
+           
+         System.out.println("Opció no vàlida.");
+        }
+    }
+     public static void inicialitzarDades() {
+
+       preusHabitacions.put(TIPUS_ESTANDARD, 50f);
+       preusHabitacions.put(TIPUS_SUITE, 100f);
+       preusHabitacions.put(TIPUS_DELUXE, 150f);
+       
        capacitatInicial.put(TIPUS_ESTANDARD, 30);
        capacitatInicial.put(TIPUS_SUITE, 20);
        capacitatInicial.put(TIPUS_DELUXE, 10);
-       HashMap<String, Float> preusServeis = new HashMap<String, Float>();
-        preusServeis.put(SERVEI_ESMORZAR, 10f);
-        preusServeis.put(SERVEI_GIMNAS, 15f);
-         preusServeis.put(SERVEI_SPA, 20f);
-         preusServeis.put(SERVEI_PISCINA, 25f);
-           switch (opcio) {
-            case 1:
-                System.out.println("Has seleccionat reservar una habitació Estandard. Vale 50f");
-                break;
-            case 2:
-                System.out.println("Has seleccionat reservar una habitació Suite. Vale 100f");
-                break;
-            case 3:
-                System.out.println("Has seleccionat reservar una habitació Deluxe. Vale 150f");
-                break;
-    //Serveis addicionals
-            case 4:
-                System.out.println("Has seleccionat servei d'esmorzar. Vale 10f");
-                break;
-            case 5:
-                System.out.println("Has seleccionat servei de gimnàs. Vale 15f");
-                break;
-            case 6:
-                System.out.println("Has seleccionat servei de spa. Vale 20f");
-                break;
-            case 7:
-                System.out.println("Has seleccionat servei de piscina. Vale 25f");      
-                break;
-            default:
-         System.out.println("Opció no vàlida. Si us plau, torneu a intentar-ho.");
-        }
+       
+       preusServeis.put(SERVEI_ESMORZAR, 10f);
+       preusServeis.put(SERVEI_GIMNAS, 15f);
+       preusServeis.put(SERVEI_SPA, 20f);
+       preusServeis.put(SERVEI_PISCINA, 25f);
+
    }
         /**
      * Gestiona tot el procés de reserva: selecció del tipus d'habitació,
@@ -300,7 +304,17 @@ public class App {
     public static void alliberarHabitacio() {
         System.out.println("\n===== ALLIBERAR HABITACIÓ =====");
          // TODO: Demanar codi, tornar habitació i eliminar reserva
-         
+         System.out.print("Introdueix el codi de reserva: ");
+         int codi = sc.nextInt();
+         if (reserves.containsKey(codi)) {
+             String tipusHabitacio = reserves.get(codi).getTipusHabitacio();
+             reserves.remove(codi);
+             disponibilitatHabitacions.put(tipusHabitacio, disponibilitatHabitacions.get(tipusHabitacio) + 1);
+             System.out.println("Habitació alliberada correctament.");
+         } else {
+             System.out.println("No s'ha trobat cap reserva amb aquest codi.");
+         }
+
     }
 
     /**
