@@ -124,7 +124,7 @@ public class App {
         preusServeis.put(SERVEI_GIMNAS, 15f);
          preusServeis.put(SERVEI_SPA, 20f);
          preusServeis.put(SERVEI_PISCINA, 25f);
-        switch (opcio) {
+           switch (opcio) {
             case 1:
                 System.out.println("Has seleccionat reservar una habitació Estandard. Vale 50f");
                 break;
@@ -150,7 +150,7 @@ public class App {
             default:
          System.out.println("Opció no vàlida. Si us plau, torneu a intentar-ho.");
         }
-    }
+   }
         /**
      * Gestiona tot el procés de reserva: selecció del tipus d'habitació,
      * serveis addicionals, càlcul del preu total i generació del codi de reserva.
@@ -210,6 +210,9 @@ public class App {
         System.out.println("\nTipus d'habitació disponibles:");
         for (String tipus : preusHabitacions.keySet()) {
             mostrarInfoTipus(tipus);
+            if (preusHabitacions.get(tipus) > 0) {
+                return tipus;
+            }
         }   
     
 
@@ -256,7 +259,25 @@ public class App {
      */
     public static float calcularPreuTotal(String tipusHabitacio, ArrayList<String> serveisSeleccionats) {
         //TODO:
-        return 0;
+        float preuHabitacio = preusHabitacions.get(tipusHabitacio);
+        float preuServeis = 0;
+        for (String servei : serveisSeleccionats) {
+            switch (servei) {
+                case "Esmostar":
+                    preuServeis += 10;
+                    break;
+                case "Gimnàs":
+                    preuServeis += 15;
+                    break;
+                case "Spa":
+                    preuServeis += 20;
+                    break;
+                case "Piscina":
+                    preuServeis += 25;
+                    break;
+            }
+        }
+        return (preuHabitacio + preuServeis) * 1.2f; // IVA del 20%
     }
 
     /**
@@ -265,7 +286,11 @@ public class App {
      */
     public static int generarCodiReserva() {
         //TODO:
-        return 0;
+        int codi;
+        do {
+            codi = random.nextInt(900) + 100; // Genera un número entre 100 i 999
+        } while (reserves.containsKey(codi)); // Comprova que no estiga repetit
+        return codi;
     }
 
     /**
@@ -275,6 +300,7 @@ public class App {
     public static void alliberarHabitacio() {
         System.out.println("\n===== ALLIBERAR HABITACIÓ =====");
          // TODO: Demanar codi, tornar habitació i eliminar reserva
+         
     }
 
     /**
