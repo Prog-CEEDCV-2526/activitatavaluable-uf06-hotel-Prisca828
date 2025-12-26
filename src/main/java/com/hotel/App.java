@@ -206,6 +206,7 @@ public class App {
      * habitacions disponibles. En cas contrari, retorna null.
      */
     public static String seleccionarTipusHabitacioDisponible() {
+        //TODO:
         System.out.println("\nTipus d'habitació disponibles:");
         for (String tipus : preusHabitacions.keySet()) {
             mostrarInfoTipus(tipus);
