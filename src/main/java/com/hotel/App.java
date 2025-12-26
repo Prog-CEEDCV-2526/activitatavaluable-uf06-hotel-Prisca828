@@ -115,7 +115,7 @@ public class App {
         
        System.out.println("===== INICIALITZANT PREUS =====");
 
-      inicialitzarPreus();
+      inicialitzarDades();
               
             switch (opcio) {
             case 1:
@@ -140,15 +140,15 @@ public class App {
         }
     }
      public static void inicialitzarDades() {
-    HashMap<String, Float> preusHabitacions = new HashMap<String, Float>();
+   
        preusHabitacions.put(TIPUS_ESTANDARD, 50f);
        preusHabitacions.put(TIPUS_SUITE, 100f);
        preusHabitacions.put(TIPUS_DELUXE, 150f);
-    HashMap<String, Integer> capacitatInicial = new HashMap<String, Integer>();
+    
        capacitatInicial.put(TIPUS_ESTANDARD, 30);
        capacitatInicial.put(TIPUS_SUITE, 20);
        capacitatInicial.put(TIPUS_DELUXE, 10);
-    HashMap<String, Float> preusServeis = new HashMap<String, Float>(); 
+    
        preusServeis.put(SERVEI_ESMORZAR, 10f);
        preusServeis.put(SERVEI_GIMNAS, 15f);
        preusServeis.put(SERVEI_SPA, 20f);
@@ -281,7 +281,7 @@ public class App {
                     break;
             }
         }
-        return (preuHabitacio + preuServeis) * 1.2f; // IVA del 20%
+        return (preuHabitacio + preuServeis) * 1.2f; // IVA del 21%
     }
 
     /**
