@@ -137,9 +137,11 @@ public class App {
          
     }
     /**
-     * Configura els preus de les habitacions, serveis addicionals i    
-      inicialitzarPreus() {
-        
+     * Configura els preus de les habitacions, serveis addicionals i
+     * les capacitats inicials en els HashMaps corresponents.
+     */
+    public static void inicialitzarPreus() {
+
         // Preus habitacions
         preusHabitacions.put(TIPUS_ESTANDARD, 50f);
         preusHabitacions.put(TIPUS_SUITE, 100f);    
@@ -169,12 +171,13 @@ public class App {
            return;
        }
          ArrayList<String> serveis= seleccionarServeis();
-            float preuTotal = calcularPreuTotal(tipusHabitacio, serveis);
+            float preu = calcularPreuTotal(tipusHabitacio, serveis);
             int codiReserva = generarCodiReserva();
             // Actualitzar disponibilitat
             disponibilitatHabitacions.put(tipusHabitacio, disponibilitatHabitacions.get(tipusHabitacio) - 1);
             // Guardar reserva  
-            reserves.put(codiReserva, new Reserva (tipusHabitacio, serveis, preuTotal));
+            reserves.put(codiReserva, new Reserva(tipusHabitacio, serveis, preuTotal));
+           
             // Mostrar informació de la reserva
             System.out.println("Reserva realitzada correctament!");
             System.out.println("Codi de reserva: " + codiReserva);
@@ -187,24 +190,17 @@ public class App {
      */
     public static String seleccionarTipusHabitacio() {
         //TODO:
-        System.out.println("Seleccione el tipo de habitación:");
-        System.out.println("1. Estándar");  
-        System.out.println("2. Suite");
-        System.out.println("3. Deluxe");
-        int opcion = sc.nextInt();
-        switch (opcion) {
-            case 1:
-                return TIPUS_ESTANDARD;
-            case 2:
-                return TIPUS_SUITE;
-            case 3:
-                return TIPUS_DELUXE;
-            default:
-                System.out.println("Opción no válida.");
+         System.out.println("Tipus disponible:");
+            System.out.println("1. Estàndard");
+            System.out.println("2. Suite");
+            System.out.println("3. Deluxe");
+
+            String tipus = seleccionarTipusHabitacioDisponible();
+            if (disponibilitatHabitacions.get(tipus) > 0) return tipus; {
+                
+             System.out.println("No hi ha habitacions disponibles d'aquest tipus.");
                 return null;
         }
-        
-        
     }
 
     /**
@@ -227,36 +223,18 @@ public class App {
      * Permet triar serveis addicionals (entre 0 i 4, sense repetir) i
      * els retorna en un ArrayList de String.
      */
-    public static ArrayList<String> seleccionarServeis() {
+    public static ArrayList<String> seleccionarServeis () {
         ArrayList<String> serveisSeleccionats = new ArrayList<>();
-        //TODO:
-        System.out.println("Serveis addicionals disponibles:");
-        System.out.println("1. Esmorzar (10€)");
-        System.out.println("2. Gimnàs (15€)");
-        System.out.println("3. Spa (20€)");
-        System.out.println("4. Piscina (25€)");
-        System.out.println("0. Cap servei");
-        int opcio = sc.nextInt();
-        switch (opcio) {
-            case 1:
-                serveisSeleccionats.add("Esmostar");
-                break;
-            case 2:
-                serveisSeleccionats.add("Gimnàs");
-                break;
-            case 3:
-                serveisSeleccionats.add("Spa");
-                break;
-            case 4:
-                serveisSeleccionats.add("Piscina");
-                break;
-            default:
-                break;
-        }
-
+        System.out.println ("Afegir esmorzar? (1: Sí / 0: No)");
+        if (sc.nextInt() == 1) serveisSeleccionats.add(SERVEI_ESMORZAR);
+        System.out.println("Afegir gimnàs? (1: Sí, 0: No): ");
+        if (sc.nextInt() == 1) serveisSeleccionats.add(SERVEI_GIMNAS);
+        System.out.println("Afegir spa? (1: Sí, 0: No): ");
+        if (sc.nextInt() == 1) serveisSeleccionats.add(SERVEI_SPA);
+        System.out.println("Afegir piscina? (1: Sí, 0: No): ");
+        if (sc.nextInt() == 1) serveisSeleccionats.add(SERVEI_PISCINA);
         return serveisSeleccionats;
-        }
-    
+    }
     /**
      * Calcula i retorna el cost total de la reserva, incloent l'habitació,
      * els serveis seleccionats i l'IVA.
