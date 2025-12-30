@@ -159,23 +159,25 @@ public class App {
      */
     public static void reservarHabitacio() {
         System.out.println("\n===== RESERVAR HABITACIÓ =====");
-        System.out.println("Tipus d'habitació disponibles:");
-        String tipusHabitacio = seleccionarTipusHabitacioDisponible();
-        HashMap<String,Integer> capacitatInicial = new HashMap<String,Integer>();
-        capacitatInicial.put(TIPUS_ESTANDARD, 30);
-        capacitatInicial.put(TIPUS_SUITE, 20); 
-        capacitatInicial.put(TIPUS_DELUXE, 10);
-    System.out.println("Capacitat inicial de les habitacions:");
-        for (String tipus : capacitatInicial.keySet()) {
-        int capacitat = capacitatInicial.get(tipus);
-        System.out.println("- " + tipus + ": " + capacitat + " habitacions");  
-        ArrayList<String> serveisSeleccionats = seleccionarServeis();
-        float preuTotal = calcularPreuTotal(tipusHabitacio, serveisSeleccionats);
-        int codiReserva = generarCodiReserva();
-        System.out.println("\nReserva realitzada amb èxit!");   
-    }    
-    }
-
+       String tipusHabitacio = seleccionarTipusHabitacioDisponible();
+       if (tipusHabitacio == null) {
+           System.out.println("No hi ha habitacions disponibles.");
+           return;
+       }
+         ArrayList<String> serveisSeleccionats = seleccionarServeis();
+            float preuTotal = calcularPreuTotal(tipusHabitacio, serveisSeleccionats);
+            int codiReserva = generarCodiReserva();
+            // Actualitzar disponibilitat
+            disponibilitatHabitacions.put(tipusHabitacio, disponibilitatHabitacions.get(tipusHabitacio) - 1);
+            // Guardar reserva  
+            Reserva novaReserva = new Reserva(tipusHabitacio, serveisSeleccionats, preuTotal);
+            reserves.put(codiReserva, novaReserva);
+            // Mostrar informació de la reserva
+            System.out.println("Reserva realitzada correctament!");
+            System.out.println("Codi de reserva: " + codiReserva);
+            System.out.println("Tipus d'habitació: " + tipusHabitacio);
+            System.out.println("Serveis addicionals: " + String.join(", ", serveisSeleccionats));
+            System.out.println("Preu total (amb IVA): " + preuTotal + "€");
     /**
      * Pregunta a l'usuari un tipus d'habitació en format numèric i
      * retorna el nom del tipus.
