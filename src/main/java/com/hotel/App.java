@@ -136,7 +136,22 @@ public class App {
         }
          
     }
-     
+        public static void inicialitzarPreus(){
+        // Preus habitacions
+        preusHabitacions.put(TIPUS_ESTANDARD, 50f);
+        preusHabitacions.put(TIPUS_SUITE, 100f);    
+        preusHabitacions.put(TIPUS_DELUXE, 150f);
+        // Capacitats inicials
+        capacitatInicial.put(TIPUS_ESTANDARD, CAPACITAT_ESTANDARD);
+        capacitatInicial.put(TIPUS_SUITE, CAPACITAT_SUITE);
+        capacitatInicial.put(TIPUS_DELUXE, CAPACITAT_DELUXE);
+        disponibilitatHabitacions.putAll(capacitatInicial);   
+        // Preus serveis
+        preusServeis.put(SERVEI_ESMORZAR, 10f);
+        preusServeis.put(SERVEI_GIMNAS, 15f);   
+        preusServeis.put(SERVEI_SPA, 20f);
+        preusServeis.put(SERVEI_PISCINA, 25f);
+    }
 
         /**
      * Gestiona tot el procés de reserva: selecció del tipus d'habitació,
