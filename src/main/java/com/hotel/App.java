@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 
-import jdk.dynalink.beans.StaticClass;
 
 /**
  * Gestió de reserves d'un hotel.
@@ -111,7 +110,31 @@ public class App {
     /**
      * Processa l'opció seleccionada per l'usuari i crida el mètode corresponent.
      */
-    public static void gestionarOpcio(int opcio) {
+
+       public static void inicialitzarDades() {
+         // Capacitat inicial
+        
+         capacitatInicial.put ("Estandard", 30);
+         capacitatInicial.put ("Suite", 20);
+         capacitatInicial.put ("Deluxe", 10);
+         // Preus habitacions
+       
+         preusHabitacions.put ("Estandard", 50f);
+         preusHabitacions.put ("Suite", 100f);
+         preusHabitacions.put ("Deluxe", 150f);
+        // Disponibilitat inicial
+        disponibilitatHabitacions.put ("Estandard", 30);
+        disponibilitatHabitacions.put ("Suite", 20);
+        disponibilitatHabitacions.put ("Deluxe", 10);
+       
+         // Serveis addicionals
+        
+         preusServeis.put ("Esmorzar", 10f);
+         preusServeis.put ("Gimnas", 15f);
+         preusServeis.put ("Spa", 20f);
+         preusServeis.put ("Piscina", 25f);  
+    }
+       static void gestionarOpcio(int opcio) {
         switch (opcio) {
             case 1:
                 reservarHabitacio();
@@ -120,7 +143,7 @@ public class App {
                 alliberarHabitacio();
                 break;
             case 3:
-               consultarDisponibilitat();
+                consultarDisponibilitat();
                 break;
             case 4:
                 obtindreReservaPerTipus();
@@ -129,54 +152,35 @@ public class App {
                 obtindreReserva();
                 break;
             case 6:
-                System.out.println("Adeu!");
+                System.out.println("Eixint del sistema...");
                 break;
             default:
-            System.out.println("Opció no vàlida."); 
+                System.out.println("Opció no vàlida. Torna-ho a intentar.");
         }
-         
     }
+
     /**
-     * Configura els preus de les habitacions, serveis addicionals i
-     * les capacitats inicials en els HashMaps corresponents.
-     */
-    public static void inicialitzarPreus() {
-
-        // Preus habitacions
-        preusHabitacions.put(TIPUS_ESTANDARD, 50f);
-        preusHabitacions.put(TIPUS_SUITE, 100f);    
-        preusHabitacions.put(TIPUS_DELUXE, 150f);
-        // Capacitats inicials
-        capacitatInicial.put(TIPUS_ESTANDARD, CAPACITAT_ESTANDARD);
-        capacitatInicial.put(TIPUS_SUITE, CAPACITAT_SUITE);
-        capacitatInicial.put(TIPUS_DELUXE, CAPACITAT_DELUXE);
-        disponibilitatHabitacions.putAll(capacitatInicial);   
-        // Preus serveis
-        preusServeis.put(SERVEI_ESMORZAR, 10f);
-        preusServeis.put(SERVEI_GIMNAS, 15f);   
-        preusServeis.put(SERVEI_SPA, 20f);
-        preusServeis.put(SERVEI_PISCINA, 25f);
-    }
-
-
-        /**
      * Gestiona tot el procés de reserva: selecció del tipus d'habitació,
      * serveis addicionals, càlcul del preu total i generació del codi de reserva.
      */
     public static void reservarHabitacio() {
         System.out.println("\n===== RESERVAR HABITACIÓ =====");
        String tipusHabitacio = seleccionarTipusHabitacioDisponible();
-       if (tipusHabitacio == null) {
-           System.out.println("No hi ha habitacions disponibles.");
-           return;
-       }
+       if (tipusHabitacio == null) return; {
+         }
+
          ArrayList<String> serveis= seleccionarServeis();
-            float preu = calcularPreuTotal(tipusHabitacio, serveis);
+            float preuTotal = calcularPreuTotal (tipusHabitacio, serveis);
             int codiReserva = generarCodiReserva();
+            ArrayList<String> reserva = new ArrayList<>();
+            reserva.add(tipusHabitacio);
+            reserva.addAll(serveis);
+            reserva.add(String.valueOf(preuTotal));
             // Actualitzar disponibilitat
             disponibilitatHabitacions.put(tipusHabitacio, disponibilitatHabitacions.get(tipusHabitacio) - 1);
+
             // Guardar reserva  
-            reserves.put(codiReserva, new Reserva(tipusHabitacio, serveis, preuTotal));
+            reserves.put(codiReserva, new Reserva (tipusHabitacio, serveis, preuTotal));
            
             // Mostrar informació de la reserva
             System.out.println("Reserva realitzada correctament!");
@@ -195,12 +199,19 @@ public class App {
             System.out.println("2. Suite");
             System.out.println("3. Deluxe");
 
-            String tipus = seleccionarTipusHabitacioDisponible();
-            if (disponibilitatHabitacions.get(tipus) > 0) return tipus; {
-                
-             System.out.println("No hi ha habitacions disponibles d'aquest tipus.");
-                return null;
+            int opcio = llegirEnter ("Selecciona un tipus d'habitació (1-3): ");
+            switch (opcio) {
+                case 1:
+                    return TIPUS_ESTANDARD;
+                case 2:
+                    return TIPUS_SUITE;
+                case 3:
+                    return TIPUS_DELUXE;
+                default:
+                    System.out.println("Opció no vàlida.");
+                    return null;
         }
+
     }
 
     /**
@@ -223,6 +234,7 @@ public class App {
      * Permet triar serveis addicionals (entre 0 i 4, sense repetir) i
      * els retorna en un ArrayList de String.
      */
+   
     public static ArrayList<String> seleccionarServeis () {
         ArrayList<String> serveisSeleccionats = new ArrayList<>();
         System.out.println ("Afegir esmorzar? (1: Sí / 0: No)");
@@ -259,7 +271,7 @@ public class App {
                     break;
             }
         }
-        return (preuHabitacio + preuServeis) * 1.2f; // IVA del 21%
+        return (preuHabitacio + preuServeis) * 2.1f; // IVA del 21%
     }
 
     /**
