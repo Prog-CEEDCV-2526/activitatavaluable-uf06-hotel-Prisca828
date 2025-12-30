@@ -112,31 +112,10 @@ public class App {
      * Processa l'opció seleccionada per l'usuari i crida el mètode corresponent.
      */
     public static void gestionarOpcio(int opcio) {
-        
-       System.out.println("===== INICIALITZANT PREUS =====");
-       public static void  main (String[] args) {
-      
-       Map<String, Float> preusHabitacions = new HashMap<>();
-       preusHabitacions.put(TIPUS_ESTANDARD, 50f);
-       preusHabitacions.put(TIPUS_SUITE, 100f);
-       preusHabitacions.put(TIPUS_DELUXE, 150f);
-       Map<String, Integer> capacitatInicial = new HashMap<>();
-       capacitatInicial.put(TIPUS_ESTANDARD, 30);
-       capacitatInicial.put(TIPUS_SUITE, 20);
-       capacitatInicial.put(TIPUS_DELUXE, 10);
-       Map<String, Float> preusServeis = new HashMap<>();
-       preusServeis.put(SERVEI_ESMORZAR, 10f);
-       preusServeis.put(SERVEI_GIMNAS, 15f);
-       preusServeis.put(SERVEI_SPA, 20f);
-       preusServeis.put(SERVEI_PISCINA, 25f);   
-    }
-
-         System.out.println("Preus inicialitzats correctament.");
-         inicialitzarDades();
-
-            switch (opcio) {
+        switch (opcio) {
             case 1:
                 reservarHabitacio();
+                break;
             case 2:
                 alliberarHabitacio();
                 break;
@@ -145,6 +124,7 @@ public class App {
                 break;
             case 4:
                 obtindreReservaPerTipus();
+                break;
             case 5:
                 obtindreReserva();
                 break;
@@ -152,9 +132,9 @@ public class App {
                 System.out.println("Adeu!");
                 break;
             default:
-           
-         System.out.println("Opció no vàlida.");
+            System.out.println("Opció no vàlida."); 
         }
+         
     }
      
 
