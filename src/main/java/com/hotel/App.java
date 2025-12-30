@@ -29,7 +29,7 @@ public class App {
     public static final int CAPACITAT_DELUXE = 10;
 
     // IVA
-    public static final float IVA = 0.21f;
+    public static final float IVA = 1.21f;
 
     // Scanner únic
     public static Scanner sc = new Scanner(System.in);
@@ -305,6 +305,9 @@ public class App {
      */
     public static float calcularPreuTotal(String tipusHabitacio, ArrayList<String> serveisSeleccionats) {
         float preuHabitacio = preusHabitacions.get(tipusHabitacio);
+        if (preuHabitacio == 0) {
+            return 0;
+        }
         float preuServeis = 0;
         for (String servei : serveisSeleccionats) {
             switch (servei) {
@@ -322,7 +325,7 @@ public class App {
                     break;
             }
         }
-        return (preuHabitacio + preuServeis) * 2.1f; // IVA del 21%
+        return (preuHabitacio + preuServeis) * 1.21f; // IVA del 21%
     }
 
     /**
@@ -368,6 +371,7 @@ public class App {
         for (String tipus : preusHabitacions.keySet()) {
             mostrarDisponibilitatTipus(tipus);
         }
+        System.out.println();
 
     }
 
