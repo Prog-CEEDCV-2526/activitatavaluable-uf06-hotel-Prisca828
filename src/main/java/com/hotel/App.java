@@ -56,7 +56,7 @@ public class App {
     public static void main(String[] args) {
         inicialitzarPreus();
 
-        int opcio = 0;
+        int opcio ;
         do {
             mostrarMenu();
             opcio = llegirEnter("Seleccione una opció: ");
@@ -136,7 +136,10 @@ public class App {
         }
          
     }
-        public static void inicialitzarPreus(){
+    /**
+     * Configura els preus de les habitacions, serveis addicionals i    
+      inicialitzarPreus() {
+        
         // Preus habitacions
         preusHabitacions.put(TIPUS_ESTANDARD, 50f);
         preusHabitacions.put(TIPUS_SUITE, 100f);    
@@ -153,6 +156,7 @@ public class App {
         preusServeis.put(SERVEI_PISCINA, 25f);
     }
 
+
         /**
      * Gestiona tot el procés de reserva: selecció del tipus d'habitació,
      * serveis addicionals, càlcul del preu total i generació del codi de reserva.
@@ -164,19 +168,18 @@ public class App {
            System.out.println("No hi ha habitacions disponibles.");
            return;
        }
-         ArrayList<String> serveisSeleccionats = seleccionarServeis();
-            float preuTotal = calcularPreuTotal(tipusHabitacio, serveisSeleccionats);
+         ArrayList<String> serveis= seleccionarServeis();
+            float preuTotal = calcularPreuTotal(tipusHabitacio, serveis);
             int codiReserva = generarCodiReserva();
             // Actualitzar disponibilitat
             disponibilitatHabitacions.put(tipusHabitacio, disponibilitatHabitacions.get(tipusHabitacio) - 1);
             // Guardar reserva  
-            Reserva novaReserva = new Reserva(tipusHabitacio, serveisSeleccionats, preuTotal);
-            reserves.put(codiReserva, novaReserva);
+            reserves.put(codiReserva, new Reserva (tipusHabitacio, serveis, preuTotal));
             // Mostrar informació de la reserva
             System.out.println("Reserva realitzada correctament!");
             System.out.println("Codi de reserva: " + codiReserva);
             System.out.println("Tipus d'habitació: " + tipusHabitacio);
-            System.out.println("Serveis addicionals: " + String.join(", ", serveisSeleccionats));
+            System.out.println("Serveis addicionals: " + String.join(", ", serveis));
             System.out.println("Preu total (amb IVA): " + preuTotal + "€");
     /**
      * Pregunta a l'usuari un tipus d'habitació en format numèric i
@@ -253,7 +256,7 @@ public class App {
 
         return serveisSeleccionats;
         }
-
+    
     /**
      * Calcula i retorna el cost total de la reserva, incloent l'habitació,
      * els serveis seleccionats i l'IVA.
@@ -430,4 +433,5 @@ public class App {
 
         System.out.println(etiqueta + "\t" + lliures + "\t" + ocupades);
     }
+}
 }
