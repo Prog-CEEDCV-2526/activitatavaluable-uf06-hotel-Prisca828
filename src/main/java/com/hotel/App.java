@@ -223,36 +223,87 @@ public class App {
         System.out.println("\nTipus d'habitació disponibles:");
         for (String tipus : preusHabitacions.keySet()) {
             mostrarInfoTipus(tipus);
-            if (preusHabitacions.get(tipus) > 0) {
-                return tipus;
-            }
-        }   
-        return null;
+        }
+        String tipus = seleccionarTipusHabitacio();
+        if (tipus != null && preusHabitacions.get(tipus) > 0) {
+            return tipus;
+        }
+        if (tipus != null) {
+            System.out.println("No queden habitacions disponibles d'aquest tipus.");
+            return null;
     }
+       
 
     /**
      * Permet triar serveis addicionals (entre 0 i 4, sense repetir) i
      * els retorna en un ArrayList de String.
      */
    
-    public static ArrayList<String> seleccionarServeis () {
+    static ArrayList<String> seleccionarServeis () {
+
         ArrayList<String> serveisSeleccionats = new ArrayList<>();
-        System.out.println ("Afegir esmorzar? (1: Sí / 0: No)");
-        if (sc.nextInt() == 1) serveisSeleccionats.add(SERVEI_ESMORZAR);
-        System.out.println("Afegir gimnàs? (1: Sí, 0: No): ");
-        if (sc.nextInt() == 1) serveisSeleccionats.add(SERVEI_GIMNAS);
-        System.out.println("Afegir spa? (1: Sí, 0: No): ");
-        if (sc.nextInt() == 1) serveisSeleccionats.add(SERVEI_SPA);
-        System.out.println("Afegir piscina? (1: Sí, 0: No): ");
-        if (sc.nextInt() == 1) serveisSeleccionats.add(SERVEI_PISCINA);
+        int opcio;
+        do {
+            System.out.println ("0.Finalitzar selecció de serveis");
+            System.out.println ("1.Esmorzar");
+            System.out.println ("2.Gimnàs");
+            System.out.println ("3.Spa");
+            System.out.println ("4.Piscina");
+            opcio = llegirEnter ("Selecciona un servei addicional (0-4): ");
+            switch (opcio) {
+                case 1:
+                    if (!serveisSeleccionats.contains(SERVEI_ESMORZAR)) {
+                        serveisSeleccionats.add(SERVEI_ESMORZAR);
+                        System.out.println("Servei d'esmorzar afegit.");
+                    } else {
+                        System.out.println("Aquest servei ja ha estat seleccionat.");
+                    }
+                    break;
+                case 2:
+                    if (!serveisSeleccionats.contains(SERVEI_GIMNAS)) {
+                        serveisSeleccionats.add(SERVEI_GIMNAS);
+                        System.out.println("Servei de gimnàs afegit.");
+                    } else {
+                        System.out.println("Aquest servei ja ha estat seleccionat.");
+                    }
+                    break;
+                case 3:
+                    if (!serveisSeleccionats.contains(SERVEI_SPA)) {
+                        serveisSeleccionats.add(SERVEI_SPA);
+                        System.out.println("Servei de spa afegit.");
+                    } else {
+                        System.out.println("Aquest servei ja ha estat seleccionat.");
+                    }
+                    break;
+                case 4:
+                    if (!serveisSeleccionats.contains(SERVEI_PISCINA)) {
+                        serveisSeleccionats.add(SERVEI_PISCINA);
+                        System.out.println("Servei de piscina afegit.");
+                    } else {
+                        System.out.println("Aquest servei ja ha estat seleccionat.");
+                    }
+                    break;
+                case 0:
+                    System.out.println("Selecció de serveis finalitzada.");
+                    break;
+                default:
+                    System.out.println("Opció no vàlida. Torna-ho a intentar.");
+            }
+        } while (opcio != 0);
         return serveisSeleccionats;
+    }
+        static float calcularPreuTotal(String tipusHabitacio, ArrayList<String> serveisSeleccionats) {
+        float subtotal = preusHabitacions.get(tipusHabitacio);
+        for (String servei : serveisSeleccionats) {
+            subtotal += preusServeis.get(servei);
+        }
+        return subtotal * (1 + IVA);
     }
     /**
      * Calcula i retorna el cost total de la reserva, incloent l'habitació,
      * els serveis seleccionats i l'IVA.
      */
     public static float calcularPreuTotal(String tipusHabitacio, ArrayList<String> serveisSeleccionats) {
-        //TODO:
         float preuHabitacio = preusHabitacions.get(tipusHabitacio);
         float preuServeis = 0;
         for (String servei : serveisSeleccionats) {
