@@ -198,7 +198,7 @@ public class AppTest {
         ArrayList<String> serveis = new ArrayList<>();
         serveis.add(App.SERVEI_ESMORZAR); // 10€
 
-        float total = App.calcularPreuTotal(App.TIPUS_ESTANDARD, serveis);
+        float total = App.calcularPreuTotal(serveis, App.TIPUS_ESTANDARD);
         // 50 + 10 = 60; amb IVA 21% -> 72.6
         assertEquals(72.6f, total, 0.05f);
     }
@@ -310,8 +310,7 @@ public class AppTest {
         // seleccionarTipusHabitacio() -> triem 1 (Estàndard)
         setInput("1\n");
 
-        String out = captureOutput(() -> App.obtindreReservaPerTipus());
-
+        String out = captureOutput(() -> ));
         assertTrue(out.contains("400"));
         assertFalse(out.contains("500"));
     }
